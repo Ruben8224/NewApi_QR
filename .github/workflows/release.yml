@@ -52,5 +52,5 @@ jobs:
     - name: Deploy
       uses: okteto/pipeline@2.7.0
       with:
-        name: rubencastillo1234 # cambiar por su namespace
+        name: ruben8224 # cambiar por su namespace
         timeout: 5m
