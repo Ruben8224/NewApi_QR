@@ -1,0 +1,12 @@
+build:
+  rubencastillo1234:
+    image: okteto.dev/rubencastillo1234:latest
+
+deploy:
+  - okteto build # build the image with the latest code
+  - kubectl apply -f manifests # create all the resources in kubernetes
+dev:
+  rubencastillo1234:
+    command: bash
+    sync:
+    - .:/players

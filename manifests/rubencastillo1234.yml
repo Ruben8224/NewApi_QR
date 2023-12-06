@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubencastillo1234
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rubencastillo1234
+  template:
+    metadata:
+      labels:
+        app: rubencastillo1234
+    spec:
+      containers:
+      - image: okteto.dev/rubencastillo1234:latest
+        name: rubencastillo1234
+        envFrom:
+        - configMapRef:
+            name: rubencastillo1234-config
+        livenessProbe:
+          httpGet:
+            path: /ht/
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rubencastillo1234
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP
+  ports:
+  - name: "rubencastillo1234"
+    port: 8080
+  selector:
+    app: rubencastillo1234
