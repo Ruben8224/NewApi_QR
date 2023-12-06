@@ -53,4 +53,4 @@ jobs:
       uses: okteto/pipeline@2.7.0
       with:
         name: ruben8224 # cambiar por su namespace
-        timeout: 5m
+        timeout: 10m
