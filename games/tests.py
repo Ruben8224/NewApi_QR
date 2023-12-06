@@ -22,13 +22,15 @@ GAMES_QUERY = '''
     precio
     musica
     version
+    matricula
+    carrera
   }
 }
      '''
      
 CREATE_VIDEOJUEGO_MUTATION = '''
-mutation createGameMutation($juego: String, $fechaDeLanzamiento: String, $descripcion: String, $tipo: String, $creador: String, $personajes: String, $enemigos: String, $precio: Int, $musica: String, $version: String ){
-    createGame(juego: $juego, fechaDeLanzamiento: $fechaDeLanzamiento, descripcion: $descripcion,  tipo: $tipo,  creador: $creador,  personajes: $personajes,  enemigos: $enemigos,  precio: $precio,  musica: $musica, version: $version){
+mutation createGameMutation($juego: String, $fechaDeLanzamiento: String, $descripcion: String, $tipo: String, $creador: String, $personajes: String, $enemigos: String, $precio: Int, $musica: String, $version: String, $matricula: String, $carrera: String ){
+    createGame(juego: $juego, fechaDeLanzamiento: $fechaDeLanzamiento, descripcion: $descripcion,  tipo: $tipo,  creador: $creador,  personajes: $personajes,  enemigos: $enemigos,  precio: $precio,  musica: $musica, version: $version, matricula: $matricula, carrera: $carrera,){
         juego
 }
 }
@@ -62,7 +64,9 @@ class GameTestCase(GraphQLTestCase):
                 'enemigos': 'Tú', 
                 'precio': 120, 
                 'musica': 'Panini', 
-                'version': '123'
+                'version': '123',
+                'matricula': 'zS170130',
+                'carrera': 'Software'
             }
         )
         content = json.loads(response.content)
