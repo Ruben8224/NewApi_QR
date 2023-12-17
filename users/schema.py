@@ -19,12 +19,10 @@ class CreateUser(graphene.Mutation):
         matricula = graphene.String(required=True)
         carrera = graphene.String(required=True)
 
-    def mutate(self, info, username, password, email, matricula, carrera):
+    def mutate(self, info, username, password, email):
         user = get_user_model()(
             username=username,
             email=email,
-            matricula=matricula,
-            carrera=carrera,
         )
         user.set_password(password)
         user.save()
@@ -39,17 +37,8 @@ class Mutation(graphene.ObjectType):
 class Query(graphene.AbstractType):
     me = graphene.Field(UserType)
     users = graphene.List(UserType)
-
-class Query(graphene.ObjectType):
-    matricula = graphene.String()
-    carrera = graphene.String()
     
-    def resolve_matricula(self, info):
-        return get_user_model().objects.all()
     
-    def resolve_carrera(self, info):
-        return get_user_model().objects.all()
-
     def resolve_users(self, info):
         return get_user_model().objects.all()
 
